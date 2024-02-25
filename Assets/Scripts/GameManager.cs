@@ -12,6 +12,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject titleUI;
     [SerializeField] GameObject gameScreenUI;
     [SerializeField] GameObject gameOverUI;
+    [SerializeField] GameObject playerWinUI;
+    [SerializeField] TMP_Text finalTimeUI;
     [SerializeField] TMP_Text timerUI;
     [SerializeField] TMP_Text instructionUI;
    
@@ -31,8 +33,8 @@ public class GameManager : Singleton<GameManager>
         //START_LEVEL,
         PLAY_GAME,
         //PLAYER_DEAD,
-        GAME_OVER
-        //PLAYER_WIN
+        GAME_OVER,
+        PLAYER_WIN
     }
 
     public State state = State.TITLE;
@@ -62,6 +64,7 @@ public class GameManager : Singleton<GameManager>
         {
             case State.TITLE:
                 titleUI.SetActive(true);
+                if(playerWinUI) playerWinUI.SetActive(false);
                 if (gameScreenUI) gameScreenUI.SetActive(false);
                 //player.SetActive(false);
                 if (gameOverUI) gameOverUI.SetActive(false);
@@ -123,6 +126,15 @@ public class GameManager : Singleton<GameManager>
                 }
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                break;
+            case State.PLAYER_WIN:
+                playerWinUI.SetActive(true);
+                gameScreenUI.SetActive(false);
+                finalTimeUI.text = string.Format("{0:F1}", timer);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    state = State.TITLE;
+                }
                 break;
         }
     }

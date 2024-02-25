@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class PlayerTeleport : MonoBehaviour
 {
     public GameObject currentTeleport;
+    [SerializeField] GameManager gameManager;
+    [SerializeField] public string tagName;
 
     public void Update()
     {
@@ -13,8 +16,24 @@ public class PlayerTeleport : MonoBehaviour
         {
             if (currentTeleport != null)
             {
+                if(tagName == null || tagName != null) 
+                { 
+                    tagName = "Finish";
+                    //Check that the teleporter is tagged as a finish
+                    if(currentTeleport.CompareTag(tagName))
+                    {
+                        //If the teleporter is tagged as a finish, call the player win function from the game manager
+                        //gameManager.PlayerWin();
+                        gameManager.state = GameManager.State.PLAYER_WIN;
+                    }
+
+                }
+                
                 transform.position = currentTeleport.GetComponent<Teleporter>().GetDestination().position;
                 Console.WriteLine("woks?");
+
+                //Grab the teleporter audio source and play the sound
+                currentTeleport.GetComponent<AudioSource>().Play();
             }
         }
     }
