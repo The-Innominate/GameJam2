@@ -24,6 +24,7 @@ public class PlayerTeleport : MonoBehaviour
         {
             currentTeleport = collision.gameObject;
         }
+
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
