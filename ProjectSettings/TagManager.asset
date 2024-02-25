@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Teleporter
   layers:
   - Default
   - TransparentFX
@@ -41,9 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 2667133769
+    locked: 0
   - name: Wall
     uniqueID: 3680478557
     locked: 0
-  - name: Floor
-    uniqueID: 2667133769
+  - name: test
+    uniqueID: 3366436489
     locked: 0
