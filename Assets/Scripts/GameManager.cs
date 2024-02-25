@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 //using System;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -62,6 +63,10 @@ public class GameManager : Singleton<GameManager>
                 if (gameScreenUI) gameScreenUI.SetActive(false);
                 //player.SetActive(false);
                 if (gameOverUI) gameOverUI.SetActive(false);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    state = State.START_GAME;
+                }
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;
@@ -90,6 +95,10 @@ public class GameManager : Singleton<GameManager>
                 gameOverUI.SetActive(true);
                 gameScreenUI.SetActive(false);
                 //player.SetActive(false);
+                if(Input.GetKeyDown(KeyCode.Space)) 
+                {
+                    state = State.TITLE;
+                }
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;
