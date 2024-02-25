@@ -13,6 +13,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject gameScreenUI;
     [SerializeField] GameObject gameOverUI;
     [SerializeField] TMP_Text timerUI;
+    [SerializeField] TMP_Text instructionUI;
+   
     //Pass in an animator for the player which is called on game start
     [SerializeField] Animator playerAnimator;
 
@@ -89,6 +91,26 @@ public class GameManager : Singleton<GameManager>
                 {
                     stateTimer = 0;
                     state = State.GAME_OVER;
+                }
+                if (timer >= 290)
+                {
+                    instructionUI.text = "Press E to use teleporters. WASD or Arrow-Keys to move.";
+                }
+                else if (timer < 290 && timer >= 280)
+                {
+                    instructionUI.text = "Watch out for DANGERS such as SPIKES, HOLES, or areas that might make you SLOW.";
+                }
+                else if(timer < 280 && timer >= 270)
+                {
+                    instructionUI.text = "Find the green teleporter within 5 minutes to escape the mazes youre stuck in.";
+                }
+                else if (timer < 270 && timer >= 260)
+                {
+                    instructionUI.text = "Watch out for RED or ORANGE, they might signify danger.";
+                }
+                else
+                {
+                    instructionUI.text = "";
                 }
                 break;
             case State.GAME_OVER:
