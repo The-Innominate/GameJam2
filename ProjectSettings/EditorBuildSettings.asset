@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/CameronsScene.unity
+    guid: aa213752d95ac1641a2d9f5a9464a5dd
   m_configObjects: {}

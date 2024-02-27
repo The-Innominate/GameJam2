@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
     public float timer;
     //public int lives;
     public float stateTimer = 0;
+    private Vector2 initialTransform;
 
     public float Timer
     {
@@ -56,6 +57,7 @@ public class GameManager : Singleton<GameManager>
         //titleUI.SetActive(true);
         //gameScreenUI.SetActive(false);
         //player.SetActive(false);
+        initialTransform = player.transform.position;
     }
 
     private void Update()
@@ -68,10 +70,12 @@ public class GameManager : Singleton<GameManager>
                 if (gameScreenUI) gameScreenUI.SetActive(false);
                 //player.SetActive(false);
                 if (gameOverUI) gameOverUI.SetActive(false);
+                player.transform.position = initialTransform;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     state = State.START_GAME;
                 }
+                player.transform.position = initialTransform;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;

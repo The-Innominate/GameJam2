@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class PlayerTeleport : MonoBehaviour
@@ -42,6 +39,10 @@ public class PlayerTeleport : MonoBehaviour
         if (collision.CompareTag("Teleporter"))
         {
             currentTeleport = collision.gameObject;
+        }
+        if(collision.CompareTag("Finish"))
+        {
+            gameManager.state = GameManager.State.PLAYER_WIN;
         }
     }
     public void OnTriggerExit2D(Collider2D collision)
